@@ -1,0 +1,9 @@
+200 MENU
+{
+    POPUP "&File"
+    {
+        MENUITEM "&New", 100
+        MENUITEM "&Open", 101
+        MENUITEM "&Save", 102
+    }
+}
