@@ -40,14 +40,14 @@ void ChangeColor::convertGreen() {
 
 }
 
-void ChangeColor::convertMario() {
+void ChangeColor::convertUV() {
 
     sf::Color color;
 
     for( int i = 0;  i < texture.getSize().y; ++i ){
         for( int j = 0; j < texture.getSize().x; ++j ){
-            color = sf::Color( 0, image.getPixel(j, i).g, 0);
-            image.setPixel(j, i, color);
+            color = image.getPixel(j, i);
+            image.setPixel(j, i, uvLampColor(color) );
         }
     }
 
@@ -57,18 +57,38 @@ void ChangeColor::convertMario() {
 
 sf::Color getColor(sf::Color color){
 
-    if( color.r < color.g && color.r < color.b )
-        return sf::Color(0, color.g, color.b);
+    if( color.r > color.g && color.r > color.b )
+        return sf::Color(color.b, color.g, color.b);
 
     if( color.g < color.r && color.g < color.b )
-        return sf::Color(color.r, 0, color.b);
+        return sf::Color(color.r, color.b, color.b);
 
     if( color.b < color.r && color.b < color.g )
-        return sf::Color(color.r, color.g, 0);
+        return sf::Color(color.r, color.g, color.b);
 
 
-    return sf::Color(0, color.g, color.b);
+    return sf::Color(color.b, color.g, color.b);
 }
+
+sf::Color uvLampColor(sf::Color color){
+    int avg = std::min( (color.b + color.g + color.r) / 3 +50, 255);
+    return sf::Color(color.r, color.g, avg );
+}
+
+sf::Color lightColor(sf::Color color){
+
+    int avg = (color.b + color.g)/2 ;
+
+    if( color.r >= 170 && color.r < 190 )
+        return sf::Color( 190 + (color.r - 170) , color.g, color.b );
+
+    if( color.r < 170 && color.r > 150 )
+        return sf::Color( 150 - (170 - color.r), color.g, color.b);
+
+    return sf::Color(color.r,  color.g, color.b);
+}
+
+
 
 sf::Color BlackWhite(sf::Color color){
 
@@ -95,15 +115,14 @@ void ChangeColor::convertBlackWhite() {
     tempSprite.setTexture(texture);
 }
 
-void ChangeColor::convertBubbleGum() {
+void ChangeColor::convertLight() {
 
     sf::Color color;
 
     for( int i = 0;  i < texture.getSize().y; ++i ){
         for( int j = 0; j < texture.getSize().x; ++j ){
-      //      color = sf::Color( 0, image.getPixel(j, i).g, 0);
             color = image.getPixel(j,i);
-        //    image.setPixel(j, i, lowBits(color));
+            image.setPixel(j, i, lightColor(color));
         }
     }
 

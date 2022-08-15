@@ -18,14 +18,16 @@ public:
     ChangeColor();
      ~ChangeColor();
     void convertGreen();
-    void convertMario();
-    void convertBubbleGum();
+    void convertUV();
+    void convertLight();
     void convertBlackWhite();
     void saveImage(std::string fileStr);
 };
 
 sf::Color getColor(sf::Color color);
 sf::Color lowBits(sf::Color color);
+sf::Color uvLampColor(sf::Color color);
+sf::Color lightColor(sf::Color color);
 
 
 

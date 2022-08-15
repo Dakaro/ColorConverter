@@ -8,10 +8,7 @@
 
 #define  ID_BUTTON_RUN 501
 #define ID_BUTTON_SHOWIMAGE 502
-#define COMBOBOX_MODE_GREEN 0
-#define COMBOBOX_MODE_MARIO 1
-#define COMBOBOX_MODE_BUBBLEGUM 2
-#define COMBOBOX_MODE_BLACKWHITE 3
+
 
     void MainLabel(HWND hwnd, HINSTANCE hInstance);
     std::string OpenFileDialog(HWND hwnd);
@@ -23,4 +20,5 @@
     void showImage();
     bool isImageActive();
     int comboBoxMode();
+    void enableImage(bool state);
 #endif //UNTITLED4_MAINLABEL_HPP

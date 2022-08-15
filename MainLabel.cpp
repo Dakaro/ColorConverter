@@ -67,6 +67,10 @@ void showImage(){
     runSFMLWindow();
 }
 
+void enableImage(bool state){
+    showImageState = state;
+}
+
 int comboBoxMode(){
     return ComboBox_GetCurSel( hComboStyles );
 }
@@ -96,9 +100,9 @@ void MainLabel(HWND hwnd, HINSTANCE hInstance) {
                                   25, 50, 150, 200, hwnd, NULL, hInstance, NULL );
 
     SendMessage( hComboStyles, CB_ADDSTRING, 0,( LPARAM ) "Green Mode" );
-    SendMessage( hComboStyles, CB_ADDSTRING, 0,( LPARAM ) "Mario Mode" );
-    SendMessage( hComboStyles, CB_ADDSTRING, 0,( LPARAM ) "Bubble Gum Mode" );
-    SendMessage( hComboStyles, CB_ADDSTRING, 0,( LPARAM ) "BlackWhite Mode" );
+    SendMessage( hComboStyles, CB_ADDSTRING, 0,( LPARAM ) "UV Mode" );
+    SendMessage( hComboStyles, CB_ADDSTRING, 0,( LPARAM ) "Light Mode" );
+    SendMessage( hComboStyles, CB_ADDSTRING, 0,( LPARAM ) "Black Mode" );
 }
 
 std::string OpenFileDialog(HWND hwnd){

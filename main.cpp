@@ -36,13 +36,13 @@ void controlsState(HWND hwnd){
             break;
         }
 
-        case 1: {// MARIO
-            convertMode = &ChangeColor::convertMario;
+        case 1: {// UV
+            convertMode = &ChangeColor::convertUV;
             break;
         }
 
-        case 2: {// BUBBLE GUM
-            convertMode = &ChangeColor::convertBubbleGum;
+        case 2: {// Light
+            convertMode = &ChangeColor::convertLight;
             break;
         }
 
@@ -128,7 +128,10 @@ LRESULT CALLBACK WndProc( HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam )
             switch(wParam)
             {
                 case ID_BUTTON_OPEN: {
+                    bool state = isImageActive();
+                    enableImage(false);
                     fileStr = OpenFileDialog(hwnd);
+                    enableImage(state);
                     if( fileStr != "NULL" ) {
                         colorMode.setImageStr(fileStr);
                         addShapeToRender(colorMode);
@@ -139,7 +142,10 @@ LRESULT CALLBACK WndProc( HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam )
                 }
 
                 case ID_BUTTON_SAVE: {
+                    bool state = isImageActive();
+                    enableImage(false);
                     fileStr = SaveFileDialog(hwnd);
+                    enableImage(state);
                     if ( fileStr != "NULL" ) {
                         colorMode.saveImage(fileStr);
                     }
